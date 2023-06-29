@@ -6,8 +6,12 @@ let words = ["rabbit", "snail", "airport", "carrots", "river", "mountain", "hous
 "earth", "toothpaste", "daughter", "tongue", "popcorn", "lunch", "excercise", "carve", "stamp", "program", "haircut", "brush", "spell", "thirty", "twenty", "fourty", "fifty", 
 "sixty", "seventy", "eighty", "ninety", "hundred"]
 
-function isLetter(input) {
-    if (input.toLowerCase > 'a' && input.toLowerCase < 'z') {
+let isLetter = (input) => {
+    if (input <= 0 || input > 1) {
+        console.log(`${input} is not a letter. Enter a letter!`);
+        return false;
+    }
+    else if (input.toLowerCase > 'a' && input.toLowerCase < 'z') {
         //console.log("A Letter from the alphabet")
         return true; 
     }
@@ -83,7 +87,7 @@ let guesses = Math.floor(randomWord.length / 2);
 let wrongGueses = []; // to store the incorrectly guessed letters
 // loop to allow several guesses
 
-while (guesses > 1 ) { // && !(underscoreWord.join('') === randomWord)
+while (guesses > 0 ) { // && !(underscoreWord.join('') === randomWord)
     console.log(underscoreWord.join(' '));
     // console.log("#############################################");
     // console.log(typeof randomWord);
@@ -96,27 +100,25 @@ while (guesses > 1 ) { // && !(underscoreWord.join('') === randomWord)
     }
     console.log(guesses, " guesses left");
     const answer = readlineSync.question("Enter a Letter: ");
-    //TODO store answers in an array and verify answer angainst its elements to avoid repetative input
     //console.log("You entered: ", answer);
-    //TODO incorporate error messages for more than 1 letter, no letter
-    // console.log(typeof answer);
-    
-    if (wrongGueses.includes(answer)) {
+    //TODO incorporate error messages for more than 1 letter, no letter 
+    //but continue running the game without removing guesses
+    if (!wrongGueses.includes(answer)) {
+        if(isLetterInWord(answer,randomWord)) {
+            console.log(`YAY, ${answer} is in ${randomWord}`);
+            //update the encrypted word by replacing the underscore at the position with the correctly guessed letter
+            underscoreWord = placeMatchingLetter(answer, randomWord, underscoreWord);
+        }
+        else {
+            wrongGueses.push(answer);
+            console.log("NOT in ", randomWord);
+            guesses--;
+        }
+
+    }
+    else {    
         console.log(`${answer} was already guessed once. Try another letter`);
-        // TODO find an equivalent ot "goto" that doesn't violate best practices
     }
-    
-    if(isLetterInWord(answer,randomWord)) {
-        console.log(`YAY, ${answer} is in ${randomWord}`);
-        //update the encrypted word by replacing the underscore at the position with the correctly guessed letter
-        underscoreWord = placeMatchingLetter(answer, randomWord, underscoreWord);
-    }
-    else {
-        wrongGueses.push(answer);
-        console.log("NOT", randomWord);
-        guesses--;
-    }
-    
 }
 
 
