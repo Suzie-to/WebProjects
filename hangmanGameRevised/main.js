@@ -45,7 +45,7 @@ const startGame = () => {
     let randomWord = getRandomWord(words);
     let underscoreWord = generateunderscoreWord(randomWord);
     //return the word as a string
-    console.log(underscoreWord.join(' '));
+    //console.log(underscoreWord.join(' '));
 }
 
 
@@ -65,6 +65,15 @@ const placeMatchingLetter = (letter, randomWord,underscoreWord) => {
     return underscoreWord;
 }
 
+const  hasWon = (sourceWord, newWord) => {
+    if (sourceWord === newWord.join('')) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}
 //console.log(placeMatchingLetter('l', 'hello', ['_', '_', '_', '_', '_']));
 
 startGame();
@@ -74,13 +83,23 @@ let underscoreWord = generateunderscoreWord(randomWord);
 let guesses = Math.floor(randomWord.length / 2);
 
 // loop to allow several guesses
-while (guesses > 0) {
+while (guesses > 1 ) { // && !(underscoreWord.join('') === randomWord)
     console.log(underscoreWord.join(' '));
+    // console.log("#############################################");
+    // console.log(typeof randomWord);
+    // console.log(typeof underscoreWord);
+    // console.log("#############################################");
+    if (!underscoreWord.includes('_') && hasWon(randomWord, underscoreWord)) {
+        console.log(`You've won!!!! The word we were looking for was ${randomWord}`);
+        break;
+    }
     const answer = readlineSync.question("Enter a Letter: ");
-    console.log("You entered: ", answer);
+    //TODO store answers in an array and verify answer angainst its elements to avoid repetative input
+    //console.log("You entered: ", answer);
     //TODO incorporate error messages for more than 1 letter, no letter
     // console.log(typeof answer);
     console.log(guesses, " guesses left");
+    
     if(isLetterInWord(answer,randomWord)) {
         console.log(`YAY, ${answer} is in ${randomWord}`);
         //update the encrypted word by replacing the underscore at the position with the correctly guessed letter
