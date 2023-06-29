@@ -50,7 +50,6 @@ const startGame = () => {
 
 
 //check whether the entered letter is in the current word
-//TODO check if word can be replaced with randomWord
 const isLetterInWord = (letter, word) => { 
     return word.includes(letter);
 }
@@ -81,24 +80,31 @@ let randomWord = getRandomWord(words);
 let underscoreWord = generateunderscoreWord(randomWord);
 //TODO rethink the number of guesses in relation to the length of the word
 let guesses = Math.floor(randomWord.length / 2);
-
+let wrongGueses = []; // to store the incorrectly guessed letters
 // loop to allow several guesses
+
 while (guesses > 1 ) { // && !(underscoreWord.join('') === randomWord)
     console.log(underscoreWord.join(' '));
     // console.log("#############################################");
     // console.log(typeof randomWord);
     // console.log(typeof underscoreWord);
     // console.log("#############################################");
+    
     if (!underscoreWord.includes('_') && hasWon(randomWord, underscoreWord)) {
         console.log(`You've won!!!! The word we were looking for was ${randomWord}`);
         break;
     }
+    console.log(guesses, " guesses left");
     const answer = readlineSync.question("Enter a Letter: ");
     //TODO store answers in an array and verify answer angainst its elements to avoid repetative input
     //console.log("You entered: ", answer);
     //TODO incorporate error messages for more than 1 letter, no letter
     // console.log(typeof answer);
-    console.log(guesses, " guesses left");
+    
+    if (wrongGueses.includes(answer)) {
+        console.log(`${answer} was already guessed once. Try another letter`);
+        // TODO find an equivalent ot "goto" that doesn't violate best practices
+    }
     
     if(isLetterInWord(answer,randomWord)) {
         console.log(`YAY, ${answer} is in ${randomWord}`);
@@ -106,6 +112,7 @@ while (guesses > 1 ) { // && !(underscoreWord.join('') === randomWord)
         underscoreWord = placeMatchingLetter(answer, randomWord, underscoreWord);
     }
     else {
+        wrongGueses.push(answer);
         console.log("NOT", randomWord);
         guesses--;
     }
