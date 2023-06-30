@@ -1,25 +1,11 @@
 
 //SET UP
 const readlineSync = require('readline-sync'); // npm package module needs to be downloaded
+const validateInput = require('./validateInput');
 
 let words = ["rabbit", "snail", "airport", "carrots", "river", "mountain", "house", "mitten", "crown", "volleyball", "bird", "volcano", "fireman", "science", "window", "ground", "muscle",
 "earth", "toothpaste", "daughter", "tongue", "popcorn", "lunch", "excercise", "carve", "stamp", "program", "haircut", "brush", "spell", "thirty", "twenty", "fourty", "fifty", 
 "sixty", "seventy", "eighty", "ninety", "hundred"]
-
-let isLetter = (input) => {
-    if (input <= 0 || input > 1) {
-        console.log(`${input} is not a letter. Enter a letter!`);
-        return false;
-    }
-    else if (input.toLowerCase > 'a' && input.toLowerCase < 'z') {
-        //console.log("A Letter from the alphabet")
-        return true; 
-    }
-    else {
-        log.console(input + " IS NOT A LETTER. TRY AGAIN!!!");
-        return false;
-    }
-}
 
 const getRandomWord = (words) => {
     let randomIndex = Math.floor(Math.random() * words.length) // Math.random() * (max-min) + min incl min, excl max
@@ -77,7 +63,7 @@ const  hasWon = (sourceWord, newWord) => {
     }
 
 }
-//console.log(placeMatchingLetter('l', 'hello', ['_', '_', '_', '_', '_']));
+//DRIVER
 
 startGame();
 let randomWord = getRandomWord(words);
@@ -85,24 +71,22 @@ let underscoreWord = generateunderscoreWord(randomWord);
 //TODO rethink the number of guesses in relation to the length of the word
 let guesses = Math.floor(randomWord.length / 2);
 let wrongGueses = []; // to store the incorrectly guessed letters
-// loop to allow several guesses
 
+// loop to allow several guesses
 while (guesses > 0 ) { // && !(underscoreWord.join('') === randomWord)
     console.log(underscoreWord.join(' '));
-    // console.log("#############################################");
-    // console.log(typeof randomWord);
-    // console.log(typeof underscoreWord);
-    // console.log("#############################################");
     
     if (!underscoreWord.includes('_') && hasWon(randomWord, underscoreWord)) {
         console.log(`You've won!!!! The word we were looking for was ${randomWord}`);
         break;
     }
     console.log(guesses, " guesses left");
-    const answer = readlineSync.question("Enter a Letter: ");
-    //console.log("You entered: ", answer);
-    //TODO incorporate error messages for more than 1 letter, no letter 
-    //but continue running the game without removing guesses
+
+    let answer = readlineSync.question("Enter a Letter: "); 
+    // validate the input (a single letter only)
+    answer = validateInput.isLetter(answer);
+
+
     if (!wrongGueses.includes(answer)) {
         if(isLetterInWord(answer,randomWord)) {
             console.log(`YAY, ${answer} is in ${randomWord}`);
