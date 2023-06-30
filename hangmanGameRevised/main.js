@@ -3,7 +3,9 @@
 const readlineSync = require('readline-sync'); // console display
 const validateInput = require('./validateInput');
 
-//TODO REplace with a directory api
+//TODO create a dictionary of top 5 players with their scores ranked
+
+//TODO Learn more aboout DOM and REplace array with a directory
 let words = ["rabbit", "snail", "airport", "carrots", "river", "mountain", "house", "mitten", "crown", "volleyball", "bird", "volcano", "fireman", "science", "window", "ground", "muscle",
 "earth", "toothpaste", "daughter", "tongue", "popcorn", "lunch", "excercise", "carve", "stamp", "program", "haircut", "brush", "spell", "thirty", "twenty", "fourty", "fifty", 
 "sixty", "seventy", "eighty", "ninety", "hundred"]
@@ -104,7 +106,7 @@ while (guesses > 0 ) {
             console.log(answer, " is NOT in ", randomWord);
             guesses--;
 
-            // display lost message for the looser
+            // display lost message for the looser if he ran out of guesses
             if (guesses == 0 && !hasWon(randomWord, underscoreWord)) {
                     console.log("You'VE LOST!");
                 }
