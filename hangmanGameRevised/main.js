@@ -2,8 +2,10 @@
 //******************************************************SET UP**************************************
 const readlineSync = require('readline-sync'); // console display
 const validateInput = require('./validateInput');
-
+const ranking = require('./ranking');
 //TODO create a dictionary of top 5 players with their scores ranked
+
+
 
 //TODO Learn more aboout DOM and REplace array with a directory
 let words = ["rabbit", "snail", "airport", "carrots", "river", "mountain", "house", "mitten", "crown", "volleyball", "bird", "volcano", "fireman", "science", "window", "ground", "muscle",
