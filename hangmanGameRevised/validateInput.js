@@ -17,7 +17,7 @@ const isLetter = (input) => {
             isValidInput = false;
         }
         else {
-            console.log("A LETTER");
+           // console.log("A LETTER");
             isValidInput = true;
         }
     }

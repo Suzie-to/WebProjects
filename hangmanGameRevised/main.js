@@ -1,54 +1,36 @@
-
-//******************************************************SET UP**************************************
 const readlineSync = require('readline-sync'); // console display
-const validateInput = require('./validateInput');
-const ranking = require('./ranking');
-//TODO create a dictionary of top 5 players with their scores ranked
+const validateInput = require('./validateInput'); // validation
+const setUp = require('./setup.js');
+//const ranking = require('./ranking');
 
-
-
-//TODO Learn more aboout DOM and REplace array with a directory
+//TODO Replace array with a directory or add more lists
 let words = ["rabbit", "snail", "airport", "carrots", "river", "mountain", "house", "mitten", "crown", "volleyball", "bird", "volcano", "fireman", "science", "window", "ground", "muscle",
 "earth", "toothpaste", "daughter", "tongue", "popcorn", "lunch", "excercise", "carve", "stamp", "program", "haircut", "brush", "spell", "thirty", "twenty", "fourty", "fifty", 
 "sixty", "seventy", "eighty", "ninety", "hundred"]
 
+// return a random word from the list
 const getRandomWord = (words) => {
     let randomIndex = Math.floor(Math.random() * words.length) // Math.random() * (max-min) + min incl min, excl max
     return words[randomIndex]
 }
 
-// let randomWord = getRandomWord(words);
-// console.log(randomWord);
-
+// return the word as a string of underscores
 const generateunderscoreWord = (word) => {
-    //transform the characters into underscores
     let underscoreWord = word.split('').map(char => { return '_'}) 
-    return underscoreWord
+    return underscoreWord;
 }
-
-
-// const generateunderscoreWord2 = (word) => {
-//     let underscoreWord = []
-//     for(let i = 0; i <word.length; i++) {
-//         underscoreWord.push('_')
-//     }return underscoreWord;
-// }
-// let encrypted = generateunderscoreWord(randomWord);
-//console.log(encrypted);
 
 const startGame = () => {
     let randomWord = getRandomWord(words);
     let underscoreWord = generateunderscoreWord(randomWord);
-    //return the word as a string
-    //console.log(underscoreWord.join(' '));
 }
-
 
 //check whether the entered letter is in the current word
 const isLetterInWord = (letter, word) => { 
     return word.includes(letter);
 }
 
+// place the correctly guessed letter in the correct position
 const placeMatchingLetter = (letter, randomWord,underscoreWord) => {
     for (let i = 0; i< randomWord.length; i++) {
         let currentLetter = randomWord[i]
@@ -59,6 +41,7 @@ const placeMatchingLetter = (letter, randomWord,underscoreWord) => {
     return underscoreWord;
 }
 
+// check whether the player has won
 const  hasWon = (sourceWord, newWord) => {
     if (sourceWord === newWord.join('')) {
         return true;
@@ -110,7 +93,8 @@ while (guesses > 0 ) {
 
             // display lost message for the looser if he ran out of guesses
             if (guesses == 0 && !hasWon(randomWord, underscoreWord)) {
-                    console.log("You'VE LOST!");
+                    console.log("YOU'VE LOST!");
+                    //displayRanking();
                 }
             //TODO Prompt user to play again? generate a new word?
             }
@@ -121,4 +105,6 @@ while (guesses > 0 ) {
     }
 }
 
+
 startGame();
+
