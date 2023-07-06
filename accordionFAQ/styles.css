@@ -1,0 +1,76 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    /* background: url(antique-guitar-table-leather-bound-books-nearby-generative-ai.jpg); */
+    background:url(mystery-box-with-gifts-concept.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.accordion {
+    width:65%;
+    background-color: antiquewhite;
+    padding:30px;
+    border-radius: 30px;
+}
+
+.accordion .accordion-title {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.accordion .content-container .question {
+    padding:18px 0px;
+    font-size: 22px;
+    cursor: pointer;
+    /* set a border under each question */
+    border-bottom: 1px solid black;
+
+    position:relative;
+
+}
+
+.accordion .content-container .question::after {
+    content: '+';
+    position:absolute;
+    right: -5px;
+}
+
+.accordion .content-container .answer {
+    padding-top: 15px;
+    font-size: 22px;
+    line-height: 1.5;
+    width: 100%;
+
+    /* hide the text innitially and wrap around it once collapsed */
+    height: 0px;
+    overflow:hidden;
+    transition: .5s;
+}
+/* JS Styling Link */
+.accordion .content-container.active .answer {
+    height: 400px;
+
+}
+
+.accordion .content-container.active .question {
+    font-size: 18px;
+    transition: .5s;
+    
+}
+
+.accordion .content-container.active .question::after {
+    content: '-';
+    font-size:30px;
+    transition: .5s;
+}

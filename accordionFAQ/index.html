@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="device=device-width initial-scale=1.0">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Accordion</title>
+</head>
+
+<body>
+    <div class="accordion">
+        <h2 class="accordion-title">Freaquently Asked Questions</h2>
+
+        <div class="content-container">
+            <div class="question">What is an accordion?</div>
+
+            <div class="answer">An accordion is a user interface component commonly used to display 
+                collapsible content sections. It allows users to expand or collapse sections of content, 
+                providing a compact way to present information while preserving screen space. The name 
+                "accordion" is derived from the musical instrument, as the expanding and collapsing sections
+                 resemble the bellows of an accordion.
+
+                Typically, an accordion consists of a series of vertically stacked panels, where each panel 
+                represents a section of content. One panel is usually expanded and visible at a time, while 
+                the other panels are collapsed and hidden. Users can interact with the accordion by clicking 
+                on the panel headers to expand or collapse the corresponding content section.
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="question">What are the benefits of using an accordion?</div>
+
+            <div class="answer">Space efficiency: Accordions save space on a webpage by displaying only one 
+                panel's content at a time, allowing users to focus on relevant information.
+
+                Organization and hierarchy: Accordions help organize content into logical sections, making 
+                it easier for users to navigate and find the information they need.
+                
+                Interactivity and user control: Users have control over which sections they want to expand 
+                or collapse, allowing them to customize their viewing experience and focus on the content 
+                they find most relevant.
+                
+                Accordions are commonly used in various contexts, such as FAQs (Frequently Asked Questions),
+                 product descriptions, content-heavy websites, and more. They provide an intuitive way to 
+                 present large amounts of information in a compact and user-friendly manner.
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="question">Can I have multiple panels open at the same time in an accordion?</div>
+
+            <div class="answer">By default, accordions display only one panel at a time, with the rest 
+                collapsed. However, you can customize the behavior to allow multiple panels to be open 
+                simultaneously if desired. This involves modifying the JavaScript code that controls the 
+                accordion's behavior. Depending on the implementation or the framework used, there may be 
+                specific options or configurations available to enable multi-panel expansion.
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="question">Are accordions accessible and SEO-friendly?</div>
+
+            <div class="answer">Accordions can be made accessible and SEO-friendly by ensuring proper HTML 
+                structure, using appropriate ARIA roles and attributes, and handling keyboard navigation 
+                and focus management. It's important to ensure that screen readers can understand the 
+                content and that users can navigate through the accordion using keyboard controls. 
+                Additionally, search engines can index the content within the accordion panels if the HTML 
+                is structured correctly, making it SEO-friendly.
+            </div>
+        </div>
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
