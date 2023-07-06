@@ -49,7 +49,6 @@ const  hasWon = (sourceWord, newWord) => {
     else {
         return false;
     }
-
 }
 //**************************GAME LOOP*****************************************************************
 startGame();
@@ -65,7 +64,7 @@ while (guesses > 0 ) {
     
     // check whether  the player has won
     if (hasWon(randomWord, underscoreWord)) {
-        console.log(`You've won!!!! The word we were looking for was ${randomWord}`);
+        console.log(`You've won!!!! The password ${randomWord}`);
         break;
     }
     // else if (guesses == 0 && underscoreWord.includes('_') && hasWon(!randomWord, underscoreWord)) {

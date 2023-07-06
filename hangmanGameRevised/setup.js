@@ -35,13 +35,13 @@ const generateunderscoreWord = (word) => {
 // let encrypted = generateunderscoreWord(randomWord);
 //console.log(encrypted);
 
-// const startGame = () => {
-//     // let playerName = readlineSync.question("Enter your name: ");
-//     // ranking.push({ name: playerName, score: 0 });
-//     let randomWord = getRandomWord(words);
-//     let underscoreWord = generateunderscoreWord(randomWord);
-//     //console.log(underscoreWord.join(' '));
-// }
+const startGame = () => {
+    // let playerName = readlineSync.question("Enter your name: ");
+    // ranking.push({ name: playerName, score: 0 });
+    let randomWord = getRandomWord(words);
+    let underscoreWord = generateunderscoreWord(randomWord);
+    //console.log(underscoreWord.join(' '));
+}
 
 
 //check whether the entered letter is in the current word
