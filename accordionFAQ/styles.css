@@ -57,10 +57,13 @@ body {
     overflow:hidden;
     transition: .5s;
 }
-/* JS Styling Link */
+
+
+
+/************JS Styling Link **************/
 .accordion .content-container.active .answer {
     height: 400px;
-
+/* TODO reduce size and add scrolling instead */
 }
 
 .accordion .content-container.active .question {

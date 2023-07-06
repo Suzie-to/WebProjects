@@ -6,3 +6,4 @@ for(let i = 0; i <accordion.length; i++) {
         this.classList.toggle('active');
     })
 };
+// TODO colapse only one tab at a time
