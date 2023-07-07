@@ -1,11 +1,14 @@
 * {
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
 body {
     background-color: rgba(54, 87, 54, 0.201);
-    position: absolute;
-    top:0;
+    /* position: absolute;
+    top:0; */
 }
 h1 {
     padding:10px;
@@ -22,6 +25,23 @@ p {
     color:green;
 }
 
+
+.container {
+    /* text-align: center;
+    margin-top: 20px; */
+    font-size:16px;
+    background-color: whitesmoke;
+    width:90vw;
+    max-width:34em;
+    position:absolute;
+    transform: translate(-50%, -50%);
+    top:50%;
+    left:50%;
+    padding: 3em;
+    border-radius: 5em;
+    box-shadow: 0 1.2em 2.4em rgba(71, 43, 5, 0.563);
+}
+
 button {
     padding:10px 20px;
     margin: 5px;
@@ -32,13 +52,8 @@ button {
     cursor: pointer;
 }
 
-.container {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#game-container {
+/* #game-container {
     margin-top:50px;
     font-size:24px;
     font-weight:bold;
-}
+} */

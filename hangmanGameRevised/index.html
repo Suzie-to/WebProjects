@@ -4,6 +4,13 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial_scale=1.0" />
         <link href="stylesheet.css" rel = "stylesheet" type="text/css"/>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <title>Hangman reinterpretetd</title>
     </head>
 
@@ -14,12 +21,19 @@
         </div>
 
         <div class="container">
-            <button id="hint">HINT</button>
-            <button id="play" class="button">PLAY</button>
-            <div id="game-container">
-                <!-- game interface -->
+            <!-- <button id="hint">HINT</button> -->
+            <!-- <button id="play" class="button">PLAY</button> -->
+            <div id="letter-container" class="letter-container hide"></div>
+            
+            <div id="user-input-section"></div> 
+            
+            <canvas id="canvas"> </canvas>
+
+                <div id="end-game-text"></div>
+                
+                <button id="new-game-button">New Game</button>
             </div>
-        </div>
+        
 
         <script src="main.js"></script>
     </body>
