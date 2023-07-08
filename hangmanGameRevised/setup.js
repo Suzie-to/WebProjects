@@ -1,15 +1,62 @@
 
 //******************************************************SET UP**************************************
-const readlineSync = require('readline-sync'); // console display
-const validateInput = require('./validateInput');
-//const ranking = require('./ranking');
 
+const cssProperties = [
+    'COLOR',
+    'FONT-SIZE',
+    'MARGIN',
+    'PADDING',
+    'BACKGROUND-COLOR',
+    'BORDER',
+    'DISPLAY',
+    'POSITION',
+    'WIDTH',
+    'HEIGHT'
+  ];
 
+  const jsFunctions = [
+    'GETELEMENTBYID',
+    'ADDEVENTLISTENER',
+    'QUERYSELECTOR',
+    'CREATEELEMENT',
+    'INNERHTML',
+    'APPENDCHILD',
+    'CONSOLE.LOG',
+    'SETTIMEOUT',
+    'PARSEINT',
+    'JSON.STRINGIFY'
+  ];
 
-//TODO Replace array with a directory
-let words = ["rabbit", "snail", "airport", "carrots", "river", "mountain", "house", "mitten", "crown", "volleyball", "bird", "volcano", "fireman", "science", "window", "ground", "muscle",
-"earth", "toothpaste", "daughter", "tongue", "popcorn", "lunch", "excercise", "carve", "stamp", "program", "haircut", "brush", "spell", "thirty", "twenty", "fourty", "fifty", 
-"sixty", "seventy", "eighty", "ninety", "hundred"]
+  const htmlTags = [
+    'DOCTYPE',
+    'HTML',
+    'HEAD',
+    'BODY',
+    'ARTICLE',
+    'SECTION',
+    'HEADER',
+    'NAV',
+    'ASIDE',
+    'FOOTER',
+    'MAIN',
+    'DIV',
+    'SPAN',
+    'IMG',
+    'TABLE',
+    'FORM',
+    'INPUT',
+    'BUTTON',
+    'TEXTAREA',
+    'SELECT',
+    'OPTION',
+    'LABEL',
+    'IFRAME',
+    'LINK',
+    'SCRIPT',
+    'STYLE',
+    'META'
+  ];
+let words = [cssProperties, jsFunctions, htmlTags];
 
 // return a random word from the list
 const getRandomWord = (words) => {
