@@ -5,7 +5,7 @@ const newGame = document.getElementById("new-game-container");
 const newGameButton = document.getElementById("new-game-button");
 const canvas = document.getElementById("canvas");
 const endGameText = document.getElementById("end-game-text")
-const categoriesContainer = document.getElementById("categories");
+const categoriesContainer = document.getElementById("categories-container");
 
 const cssProperties = [
     'COLOR',
@@ -72,18 +72,74 @@ const displayCategories = () => {
     
     //generate the word
     for(let category in categoriesContainer) {
-        buttonContainer.innerHTML += `<button class="categories" onclick="generateWord('${categoriesContainer}')" >${category}</button>`
+        buttonContainer.innerHTML += `<button class="categories" onclick="getRandomWord('${categoriesContainer}')" >${category}</button>`
     }
 
     categoriesContainer.appendChild(buttonContainer);
 };
 
-// // return a random word from the list
-const getRandomWord = (categories) => {
-    let categoryButtons = document.querySelectorAll(".categories")
+
+
+// const generateRandomword = (word) => {
+//     let categoryArray = categories[categoryName];
+//     //genereate a random index : Math.random() * (max-min) + min incl min, excl max
+//     let randomIndex = Math.floor(Math.random() * categoryArray.length);
+//     word = categoryArray[randomIndex];
+//     console.log(`PASSWORD = ${word}`);
+// }
+
+
+
+const maskedWord = (word) => {
+    //REPLACE EACH CHARACTER WITH AN UNDERSCORE
+    //let maskedWord = word.split('').map(() => '<span class="dashes">_</span>').join('');
+    let maskedWord = word.replace(/./g, '<span class="dashes">_</span>');
 }
+
+// SELECT A CATEGORY
+//return a random word from the catgeory array
+let displayWord = (categoryName) => {
+    let categoryButtons = document.querySelectorAll(".categories");
+
+    //convert the node list into an array to access the elements
+    Array.from(categoryButtons).array.forEach(button => {
+        //compare each element value(category) with the value(category) of the button innerText
+        if(button.innerText === categoryName) {
+            //finally highlight the button and activate it
+            button.classList.add('active');
+        }
+        // disable all non-active buttons
+        else {
+            button.disables = true;
+        }
+        
+    });
+
+    //reveal the letters that we hidden initially
+    letterContainer.classList.remove('hide')
+    // set the initial user input to null
+    userInput.innerText = "";
+
+//TODO move to separate function
+    //GENERATE A RANDOM WORD
+    let categoryArray = categories[categoryName];
+    //genereate a random index : Math.random() * (max-min) + min incl min, excl max
+    let randomIndex = Math.floor(Math.random() * categoryArray.length);
+    randomWord = categoryArray[randomIndex];
+    console.log(`PASSWORD = ${randomWord}`);
+
+    //REPLACE EACH CHARACTER WITH AN UNDERSCORE
+    //let maskedWord = randomWord.split('').map(() => '<span class="dashes">_</span>').join('');
+    let maskedWord = randomWord.replace(/./g, '<span class="dashes">_</span>');
+    
+    //DISPLAY THE UNDERCORE WORD
+    userInput.innerHTML = maskedWord(randomWord);
+}
+
+
+
 // const getRandomWord = (words) => {
-//     let randomIndex = Math.floor(Math.random() * words.length) // Math.random() * (max-min) + min incl min, excl max
+//     let randomIndex = Math.floor(Math.random() * words.length) 
 //     return words[randomIndex]
 // }
 
@@ -124,7 +180,8 @@ const getRandomWord = (categories) => {
 //     for (let i = 0; i< randomWord.length; i++) {
 //         let currentLetter = randomWord[i]
 //         if (currentLetter === letter) {
-//             underscoreWord[i] = letter;
+//             underscoreWord
+//[i] = letter;
 //         }
 //     }
 //     return underscoreWord;
