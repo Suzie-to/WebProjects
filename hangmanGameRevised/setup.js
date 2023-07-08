@@ -5,7 +5,7 @@ const newGame = document.getElementById("new-game-container");
 const newGameButton = document.getElementById("new-game-button");
 const canvas = document.getElementById("canvas");
 const endGameText = document.getElementById("end-game-text")
-const categories = document.getElementById("categories");
+const categoriesContainer = document.getElementById("categories");
 
 const cssProperties = [
     'COLOR',
@@ -66,16 +66,16 @@ const cssProperties = [
 
 //display a button for each category 
 const displayCategories = () => {
-    categories.innerHTML += `<h3>What's your expertise?</h3>`;
+    categoriesContainer.innerHTML += `<h3>What's your expertise?</h3>`;
     //create a button 
     let buttonContainer = document.createElement("div");
     
     //generate the word
-    for(let category in categories) {
-        buttonContainer.innerHTML += `<button class="options" onclick="generateWord('${category}')" >${value}</button>`
+    for(let category in categoriesContainer) {
+        buttonContainer.innerHTML += `<button class="categories" onclick="generateWord('${categoriesContainer}')" >${category}</button>`
     }
 
-    categories.appendChild(buttonContainer);
+    categoriesContainer.appendChild(buttonContainer);
 };
 
 // // return a random word from the list
