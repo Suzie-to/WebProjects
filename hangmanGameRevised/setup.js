@@ -1,13 +1,14 @@
 
 //******************************************************SET UP**************************************
 const userInput = document.getElementById("user-input");
-const newGame = document.getElementById("new-game-container");
+const newGameContainer = document.getElementById("new-game-container");
 const newGameButton = document.getElementById("new-game-button");
 const canvas = document.getElementById("canvas");
 const endGameText = document.getElementById("end-game-text")
 const categoriesContainer = document.getElementById("categories-container");
 
-const cssProperties = [
+const categories = {
+    cssProperties : [
     'COLOR',
     'FONT-SIZE',
     'MARGIN',
@@ -18,9 +19,9 @@ const cssProperties = [
     'POSITION',
     'WIDTH',
     'HEIGHT'
-  ];
+  ],
 
-  const jsFunctions = [
+jsFunctions : [
     'GETELEMENTBYID',
     'ADDEVENTLISTENER',
     'QUERYSELECTOR',
@@ -31,9 +32,9 @@ const cssProperties = [
     'SETTIMEOUT',
     'PARSEINT',
     'JSON.STRINGIFY'
-  ];
+  ],
 
-  const htmlTags = [
+ htmlTags : [
     'DOCTYPE',
     'HTML',
     'HEAD',
@@ -61,43 +62,44 @@ const cssProperties = [
     'SCRIPT',
     'STYLE',
     'META'
-  ];
+  ]
+};
 
-
+//TODO fix the display of categories
 //display a button for each category 
 const displayCategories = () => {
     categoriesContainer.innerHTML += `<h3>What's your expertise?</h3>`;
     //create a button 
     let buttonContainer = document.createElement("div");
     
-    //generate the word
-    for(let category in categoriesContainer) {
-        buttonContainer.innerHTML += `<button class="categories" onclick="getRandomWord('${categoriesContainer}')" >${category}</button>`
+    //generate a button for each category
+    for(let category in categories) {
+        buttonContainer.innerHTML += `<button class="categories" onclick="displayWord('${category}')" >${category}</button>`
     }
 
     categoriesContainer.appendChild(buttonContainer);
 };
 
+//diable a button that has been ckilcked already
+const blocker = () => {
+    let categoryButtons = document.querySelectorAll(".categories");
+    let letterButtons = document.querySelectorAll(".letters");
 
+    //disable all options
+    categoryButtons.forEach((button) => {
+        button.disabled = true;
+    });
+    //disable all letterscategory
+    letterButtons.forEach((button) => {
+        button.disabled.true;
+    });
+    //remove class hide from the container????
+    newGameContainer.classList.remove("hide");
+};
 
-// const generateRandomword = (word) => {
-//     let categoryArray = categories[categoryName];
-//     //genereate a random index : Math.random() * (max-min) + min incl min, excl max
-//     let randomIndex = Math.floor(Math.random() * categoryArray.length);
-//     word = categoryArray[randomIndex];
-//     console.log(`PASSWORD = ${word}`);
-// }
-
-
-
-const maskedWord = (word) => {
-    //REPLACE EACH CHARACTER WITH AN UNDERSCORE
-    //let maskedWord = word.split('').map(() => '<span class="dashes">_</span>').join('');
-    let maskedWord = word.replace(/./g, '<span class="dashes">_</span>');
-}
 
 // SELECT A CATEGORY
-//return a random word from the catgeory array
+//return a random word from the catgeory array display it encrypted
 let displayWord = (categoryName) => {
     let categoryButtons = document.querySelectorAll(".categories");
 
@@ -128,38 +130,25 @@ let displayWord = (categoryName) => {
     randomWord = categoryArray[randomIndex];
     console.log(`PASSWORD = ${randomWord}`);
 
+
     //REPLACE EACH CHARACTER WITH AN UNDERSCORE
     //let maskedWord = randomWord.split('').map(() => '<span class="dashes">_</span>').join('');
     let maskedWord = randomWord.replace(/./g, '<span class="dashes">_</span>');
     
     //DISPLAY THE UNDERCORE WORD
-    userInput.innerHTML = maskedWord(randomWord);
+    userInput.innerHTML = maskedWord;
 }
 
+//DRIVER
+let winCount = 0;
+let count = 0;
+const startGame = () => {
+    //reset everything
+    let winCount = 0;
+    let count = 0;
+    displayCategories();
+}
 
-
-// const getRandomWord = (words) => {
-//     let randomIndex = Math.floor(Math.random() * words.length) 
-//     return words[randomIndex]
-// }
-
-// // let randomWord = getRandomWord(words);
-// // console.log(randomWord);
-
-// // return the word as a string of underscores
-// const generateunderscoreWord = (word) => {
-//     //transform the characters into underscores
-//     let underscoreWord = word.split('').map(char => { return '_'}) 
-//     return underscoreWord;
-// }
-// // const generateunderscoreWord2 = (word) => {
-// //     let underscoreWord = []
-// //     for(let i = 0; i <word.length; i++) {
-// //         underscoreWord.push('_')
-// //     }return underscoreWord;
-// // }
-// // let encrypted = generateunderscoreWord(randomWord);
-// //console.log(encrypted);
 
 // const startGame = () => {
 //     // let playerName = readlineSync.question("Enter your name: ");
@@ -197,5 +186,3 @@ let displayWord = (categoryName) => {
 //     }
 
 // }
-
-// module.exports= {isLetterInWord, placeMatchingLetter, hasWon};
