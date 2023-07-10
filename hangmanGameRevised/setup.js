@@ -65,13 +65,17 @@ jsFunctions : [
   ]
 };
 
-//TODO fix the display of categories
-//display a button for each category 
+const max_guesses = 6; // the amount of limbs o a stick figure
+let randomWord = "";
+let winsCount = 0;
+let lossesCount = 0;
+let secretWord = "";
+
+
 const displayCategories = () => {
     categoriesContainer.innerHTML += `<h3>What's your expertise?</h3>`;
-    //create a button 
-    let buttonContainer = document.createElement("div");
     
+    let buttonContainer = document.createElement("div");
     //generate a button for each category
     for(let category in categories) {
         buttonContainer.innerHTML += `<button class="categories" onclick="displayWord('${category}')" >${category}</button>`
@@ -85,18 +89,17 @@ const blocker = () => {
     let categoryButtons = document.querySelectorAll(".categories");
     let letterButtons = document.querySelectorAll(".letters");
 
-    //disable all options
+    //disable all categories
     categoryButtons.forEach((button) => {
         button.disabled = true;
     });
-    //disable all letterscategory
+    //disable all letters
     letterButtons.forEach((button) => {
         button.disabled.true;
     });
-    //remove class hide from the container????
+    //display game
     newGameContainer.classList.remove("hide");
 };
-
 
 // SELECT A CATEGORY
 //return a random word from the catgeory array display it encrypted
@@ -106,32 +109,32 @@ let displayWord = (categoryName) => {
     //convert the node list into an array to access the elements
     Array.from(categoryButtons).array.forEach(button => {
         //compare each element value(category) with the value(category) of the button innerText
-        if(button.innerText === categoryName) {
+        if(button.innerText.toLowerCase() === categoryName) {
             //finally highlight the button and activate it
             button.classList.add('active');
         }
         // disable all non-active buttons
         else {
             button.disables = true;
-        }
-        
+        }        
     });
 
+//RESET
     //reveal the letters that we hidden initially
     letterContainer.classList.remove('hide')
     // set the initial user input to null
     userInput.innerText = "";
 
-//TODO move to separate function
-    //GENERATE A RANDOM WORD
+
+//GENERATE A RANDOM WORD
     let categoryArray = categories[categoryName];
     //genereate a random index : Math.random() * (max-min) + min incl min, excl max
     let randomIndex = Math.floor(Math.random() * categoryArray.length);
     randomWord = categoryArray[randomIndex];
-    console.log(`PASSWORD = ${randomWord}`);
+    console.log(`SECRET WORD = ${randomWord}`);
 
 
-    //REPLACE EACH CHARACTER WITH AN UNDERSCORE
+//ENCRYPTION - REPLACE EACH CHARACTER WITH AN UNDERSCORE
     //let maskedWord = randomWord.split('').map(() => '<span class="dashes">_</span>').join('');
     let maskedWord = randomWord.replace(/./g, '<span class="dashes">_</span>');
     
@@ -140,29 +143,79 @@ let displayWord = (categoryName) => {
 }
 
 //DRIVER
-let winCount = 0;
-let count = 0;
+
 const startGame = () => {
-    //reset everything
-    let winCount = 0;
-    let count = 0;
+//RESET FIELD
+    winsCount = 0;
+    lossesCount = 0;
+    userInputSection.innerHTML = "";
+    optionsContainer.innerHTML = "";
+    letterContainer.classList.add('hide');
+    newGameContainer.classList.add('hide');
+    letterContainer.innerHTML = "";
+
+// GENERATE LETTER BUTTONs
+    for(let i = 65; i < 91; i++) {
+        let button = document.createElement("button");
+        button.classList.add("letters");
+    }
+    //cast char into string
+    button.innerText = String.fromCharCode(i);
+    letterContainer.append(button);
+
+    button.addEventListener("click", () => {
+        let secretWordArray = secretWord.split('');
+        let dashes = document.getElementsByClassName("dashes");
+        
+        console.log(button.innerText);
+        console.log(secretWordArray);
+
+        // place the correctly guesses letter on it's position(s)
+        if(secretWordArray.includes(button.innerText)) {
+            secretWordArray.forEach((char, index) => {
+                if(char === button.innerText) {
+                    dashes[index].innerText = char;
+
+                    // check wether player has won
+                    winsCount++;
+                    if(winsCount==secretWordArray.length) {
+                        endGameText.innerHTML = `<h2 class="won-message">YOU'VE WON!!!</h2>
+                                                <p>The word was <span>${secretWord}</span></p>`;
+                                            //block all buttons
+                        blocker();
+                    }
+
+                }
+
+            });
+        }
+        else {
+            //count the losses (to draw the stick figure)
+            count++;
+            console.log(`WRONG GUESSES: ${count}`)
+            //TODO DRAW STICK FIGURE
+            if(count == max_guesses) {
+                endGameText.innerHTML = `<h2 class='lost-message'>YOU LOST !!</h2>
+                                        <p>The word was <span>${secretWord}</span></p>`
+                blocker();
+            }
+        }
+
+
+
+
+
+
+
+
+    });
+
+
+
+
     displayCategories();
 }
 
-
-// const startGame = () => {
-//     // let playerName = readlineSync.question("Enter your name: ");
-//     // ranking.push({ name: playerName, score: 0 });
-//     let randomWord = getRandomWord(words);
-//     let underscoreWord = generateunderscoreWord(randomWord);
-//     //console.log(underscoreWord.join(' '));
-// }
-
-
-// //check whether the entered letter is in the current word
-// const isLetterInWord = (letter, word) => { 
-//     return word.includes(letter);
-// }
 
 // // place the correctly guessed letter in the correct position
 // const placeMatchingLetter = (letter, randomWord,underscoreWord) => {
@@ -186,3 +239,7 @@ const startGame = () => {
 //     }
 
 // }
+
+//NEW GAME
+newGameButton.addEventListener("click", initialiser)
+window.onload = initialiser
