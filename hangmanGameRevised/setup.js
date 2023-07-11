@@ -67,7 +67,7 @@ jsFunctions : [
   ]
 };
 
-const max_guesses = 6; // the amount of limbs o a stick figure
+const max_guesses = 6; // the amount of limbs of a stick figure
 
 let winsCount = 0;
 let lossesCount = 0;
@@ -151,6 +151,7 @@ const startGame = () => {
 //RESET FIELD
     winsCount = 0;
     lossesCount = 0;
+
     userInput.innerHTML = "";
     categoriesContainer.innerHTML = "";
     letterContainer.classList.add('hide');
@@ -207,12 +208,7 @@ const startGame = () => {
         });
         letterContainer.append(button);
     }
-
-
-}
-
-
-
+}            
 //NEW GAME
 newGameButton.addEventListener("click", startGame)
 window.onload = startGame
