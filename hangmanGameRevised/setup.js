@@ -179,7 +179,7 @@ const startGame = () => {
                 if(char === button.innerText) {
                     dashes[index].innerText = char;
 
-                    // check wether player has won
+                    // check wether the player has won
                     winsCount++;
                     if(winsCount==secretWordArray.length) {
                         endGameText.innerHTML = `<h2 class="won-message">YOU'VE WON!!!</h2>
@@ -197,7 +197,7 @@ const startGame = () => {
                 lossesCount++;
                 console.log(`WRONG GUESSES: ${lossesCount}`)
                 //TODO DRAW STICK FIGURE
-                drawStickfigure();
+                drawStickfigure(lossesCount);
                 if(lossesCount == max_guesses) {
                     endGameText.innerHTML = `<h2 class='lost-message'>YOU LOST !!</h2>
                                             <p>The word was <span>${secretWord}</span></p>`
@@ -253,7 +253,7 @@ const CanvasCreator = () => {
     const rightLeg = () => {
         drawLine(70, 80, 90, 110);
     };
-
+   
     //INITIAL FRAME
     const initialDrawing = () => {
         //clear old drawing on canvas
@@ -270,10 +270,10 @@ const CanvasCreator = () => {
 
         // small line on the top (nuse)
         drawLine(70, 10, 70, 20);
-    };
-    
+    }; 
     return {initialDrawing, head, body, leftArm, rightArm, leftLeg, rightLeg};
 };
+
 // DRAW THE STICKMAN
 const drawStickfigure = (lossesCount) => {
     let {head, body, leftArm, rightArm, leftLeg, rightLeg} = CanvasCreator();
