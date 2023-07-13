@@ -12,7 +12,7 @@ const endGameText = document.getElementById("end-game-text")
 const categories = {
     cssProperties : [
     'COLOR',
-    'FONT-SIZE',
+    'FONT',
     'MARGIN',
     'PADDING',
     'BACKGROUND-COLOR',
@@ -67,7 +67,7 @@ jsFunctions : [
   ]
 };
 
-const max_guesses = 6; // the amount of limbs of a stick figure
+const max_guesses = 6;
 
 let winsCount = 0;
 let lossesCount = 0;
