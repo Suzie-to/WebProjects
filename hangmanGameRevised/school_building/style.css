@@ -1,0 +1,356 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    min-height: 100vh;
+    overflow:hidden;
+}
+/* BACKGROUND */
+.house {
+    position:relative;
+    width:700px;
+    height:550px;
+    /* sky */
+    background:lightblue;
+    /* Grass */
+    border-bottom:8px solid green;
+}
+
+/* set the main (base) part the house */
+.main {
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translate(-50%);
+    width: 450px;
+    height: 400px;
+    background: beige;
+}
+
+/* create a borderline on top */
+.main::before {
+    background: rgb(199, 199, 185);
+    position:absolute;
+    width: 100%;
+    height:10px;
+    left:0;
+    top:0;
+    content:'';
+}
+/* ROOF */
+.roof {
+    /* background-color: yellow; */
+    position:absolute;
+    height: 100px;
+    width: 100%;
+
+    /* move the top above the main */
+    top: -100px;
+    
+}
+/* left part of the roof */
+.roof::before {
+    content:'';
+    background: rgb(24, 123, 123);
+    position: absolute;
+    width:60%;
+    height:100%;
+    top: 0;
+    left: 0;
+/* create the roof shape */
+    transform: skew(330deg);
+}
+/* right part of the roof */
+.roof::after {
+    content:'';
+    background: rgb(24, 123, 123);
+    position: absolute;
+    width:60%;
+    height:100%;
+    top: 0;
+    right: 0;
+/* create the roof shape */
+    transform: skew(30deg);
+}
+
+.front {
+    background:lightgray;
+    position:absolute;
+    width:180px;
+    height:180px;
+    bottom:0;
+    left:50%;
+    /* center the fron porch */
+    transform: translateX(-50%);
+}
+/* creating the triangular shape in the roof */
+.front::before {
+    content: '';
+    /* background: rgb(194, 23, 23); */
+    background-color: lightgray;
+    position: absolute;
+    width: 126px;
+    height:126px;
+    left: 50%; /*move to the left, thus centering it */
+    top:-64px;
+    /* create the chape of a diamond */
+    transform: translateX(-50%) rotate(45deg);
+    border-top: 4px solid rgb(72, 71, 71);
+    border-left: 4px solid rgb(72, 71, 71);;
+}
+
+/* the window */
+.front::after {
+    content:'';
+    background-color:rgb(72, 71, 71);
+    position:absolute;
+    width: 46px;
+    height: 49px;
+    top:-66px;
+    /* center it */
+    left:50%;
+    transform: translateX(-50%);
+    /* round off the edges of the window */
+    /* border-top-left-radius: 100px;
+    border-top-right-radius: 100px; */
+    border-radius: 50%;
+    /* extend the shape further down */
+    border: 4px solid rgb(72, 71, 71);
+    /* create a window with a color that fades in a linear manner */
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* greate vertical and horizontal lines */
+    background-size: 10px 15px;
+}
+
+.wrapper {
+    height: 100%;
+    width: 95%;
+    top:-10px;
+    border: 5px solid #61412D;
+    position: absolute;
+    transform: translate(4px, 10px);
+    /* 3D */
+    perspective: 1000px;
+  }
+  
+ img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .door {
+    background-color: #916144;
+    height: 100%;
+    width: 50%;
+    position:absolute;
+    transform: translateX(2%);
+    
+    /* inner layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+  }
+  
+  #left-door {
+    top: 0;
+    left: 0;
+    border-right: 1px solid #5e3f2c;
+    /* transition */
+    transform-origin: left;
+    transition: transform 0.5s;
+  }
+  
+  #right-door {
+    top: 0;
+    right: 0;
+    border-left: 1px solid #5e3f2c;
+    /* transition */
+    transform-origin: right;
+    transition: transform 0.5s;
+  }
+  
+  .shape {
+    border: 4px solid black;
+    width: 80px;
+    height: 130px;
+  }
+  
+  .knob {
+    width: 10px;
+    height: 50px;
+    background-color: #D7DADE;
+    position: absolute;
+  }
+  
+  #left-knob {
+    top: 50%;
+    right: 10px;
+  }
+  
+  #right-knob {
+    top: 50%;
+    left: 10px;
+  }
+  
+  /* Door swing effect */
+  .wrapper:hover #left-door{
+    transform: rotateY(-140deg);
+  }
+  
+  .wrapper:hover #right-door{
+    transform: rotateY(140deg);
+  }
+  
+
+/* small window besides the door, left*/
+.door::before {
+    content:'';
+    position:absolute;
+    width: 49px;
+    height: 50px;
+    left: -130px;
+    top: -113px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+
+/* small window besides the door, right*/
+.door::after {
+    content:'';
+    position:absolute;
+    width: 49px;
+    height: 50px;
+    right: -130px;
+    top: -113px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+/* .ornamental-line { */
+    /* background-color: red; */
+    /* width:100%;
+    height:12px;
+
+    position:absolute;
+    top:38%;
+    border-top: 4px solid rgb(24, 123, 123);
+    border-bottom: 4px solid rgb(24, 123, 123);
+} */
+
+/* .lines-sides {
+    top:45%;
+} */
+/* window top right corner */
+.window-right {
+    position:absolute;
+    top:20px;
+    right:30px;
+
+    width: 60px;
+    height: 50px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+/* window bottom right corner */
+.window-right::before {
+    content:'';
+    position:absolute;
+    left: -12px;
+    top: 201px;
+    width: 60px;
+    height: 154px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+
+    background-size: 10px 10px;
+
+    border:5px solid rgb(72, 71, 71) ;
+    /* border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ; */
+
+    /* round off the top edges of the door*/
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
+
+/* window top right corner */
+.window-left {
+    content:'';
+    position:absolute;
+    top:20px;
+    left:30px;
+
+    width: 60px;
+    height: 50px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+/* window bottom right corner */
+.window-left::before {
+    content:'';
+    position:absolute;
+    right: -12px;
+    top: 201px;
+    width: 60px;
+    height: 154px;
+
+
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+
+    background-size: 10px 10px;
+
+    border:5px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+
+    /* round off the top edges of the door*/
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
