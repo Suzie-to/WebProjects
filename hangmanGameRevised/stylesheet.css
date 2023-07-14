@@ -26,6 +26,12 @@ body {
 }
 
 /*CATEGORIES*/
+h3 {
+    color: rgb(77, 113, 22);
+    font-size: 36px;
+    font-weight: bold;
+}
+
 #categories-container {
     text-align:center;
 }
@@ -41,7 +47,11 @@ body {
     padding: 0.6em 1.2em;
     border:3px solid rgb(95, 209, 89);
     border-radius: 3em;
+    background-color: green;
     text-transform: capitalize;
+    font-weight: bolder;
+    color: white;
+    letter-spacing: 2px;
 }
 
 #categories-container button:disabled {

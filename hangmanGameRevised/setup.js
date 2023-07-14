@@ -19,61 +19,16 @@ let doorLeft = document.querySelector('#left-door');
 let doorRight = document.querySelector('#right-door');
 
 const categories = {
-    cssProperties : [
-    'COLOR',
-    'FONT',
-    'MARGIN',
-    'PADDING',
-    'BACKGROUND-COLOR',
-    'BORDER',
-    'DISPLAY',
-    'POSITION',
-    'WIDTH',
-    'HEIGHT'
-  ],
+    cssSensei : ["SELECTOR", "BOX MODEL", "FLEXBOX", "GRID", "RESPONSIVE", 
+    "ANIMATION", "TYPOGRAPHY", "GRADIENT", "TRANSITION", "PSEUDO-CLASS"],
 
-jsFunctions : [
-    'GETELEMENTBYID',
-    'ADDEVENTLISTENER',
-    'QUERYSELECTOR',
-    'CREATEELEMENT',
-    'INNERHTML',
-    'APPENDCHILD',
-    'CONSOLE',
-    'SETTIMEOUT',
-    'PARSEINT',
-    'STRINGIFY'
-  ],
 
- htmlTags : [
-    'DOCTYPE',
-    'HTML',
-    'HEAD',
-    'BODY',
-    'ARTICLE',
-    'SECTION',
-    'HEADER',
-    'NAV',
-    'ASIDE',
-    'FOOTER',
-    'MAIN',
-    'DIV',
-    'SPAN',
-    'IMG',
-    'TABLE',
-    'FORM',
-    'INPUT',
-    'BUTTON',
-    'TEXTAREA',
-    'SELECT',
-    'OPTION',
-    'LABEL',
-    'IFRAME',
-    'LINK',
-    'SCRIPT',
-    'STYLE',
-    'META'
-  ]
+javaScriptJedi : ["VARIABLE", "FUNCTION", "ARRAY", "OBJECT", "DOM MANIPULATION",
+ "EVENT LISTENER", "CONDITIONAL", "LOOP", "SCOPE", "CALLBACK"],
+
+
+ htmlHeros : ["MARKUP", "ELEMENT", "ATTRIBUTE", "BROWSER", "HEADINGS",
+                "LISTS", "HYPERLINK", "IMAGE", "FORM", "TABLE"]
 };
 
 const maxWrongGuesses = 6;
