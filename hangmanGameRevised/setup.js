@@ -9,6 +9,15 @@ const newGameButton = document.getElementById("new-game-button");
 const canvas = document.getElementById("canvas");
 const endGameText = document.getElementById("end-game-text")
 
+
+
+let windowRight = document.querySelector('.window-right');
+let windowLeft = document.querySelector('.window-left');
+let roof = document.querySelector('.roof');
+let banner = document.querySelector('h1');
+let doorLeft = document.querySelector('#left-door');
+let doorRight = document.querySelector('#right-door');
+
 const categories = {
     cssProperties : [
     'COLOR',
@@ -67,10 +76,10 @@ jsFunctions : [
   ]
 };
 
-const max_guesses = 6;
+const maxWrongGuesses = 6;
 
-let winsCount = 0;
-let lossesCount = 0;
+let correctGuesses = 0;
+let wrongGuesses = 0;
 let secretWord = "";
 
 
@@ -149,8 +158,8 @@ let displayWord = (categoryName) => {
 
 const startGame = () => {
 //RESET FIELD
-    winsCount = 0;
-    lossesCount = 0;
+    correctGuesses = 0;
+    wrongGuesses = 0;
 
     userInput.innerHTML = "";
     categoriesContainer.innerHTML = "";
@@ -158,149 +167,101 @@ const startGame = () => {
     newGameContainer.classList.add('hide');
     letterContainer.innerHTML = "";
 
-// GENERATE LETTER BUTTONs
+// GENERATE LETTER BUTTONS
     for(let i = 65; i < 91; i++) {
         let button = document.createElement("button");
         button.classList.add("letters");
-    //cast char into string
-    button.innerText = String.fromCharCode(i);
-    letterContainer.append(button);
 
-    button.addEventListener("click", () => {
-        let secretWordArray = secretWord.split("");
-        let dashes = document.getElementsByClassName("dashes");
-        
-        console.log(button.innerText);
-        console.log(secretWordArray);
+        button.innerText = String.fromCharCode(i);
+        letterContainer.append(button);
 
-        // place the correctly guesses letter on it's position(s)
+        button.addEventListener("click", () => {
+            let secretWordArray = secretWord.split("");
+            let dashes = document.getElementsByClassName("dashes");
+            
+            console.log(button.innerText);
+            console.log(secretWordArray);
+
+        // place the correctly guesses letter at corresponding position(s)
         if(secretWordArray.includes(button.innerText)) {
             secretWordArray.forEach((char, index) => {
                 if(char === button.innerText) {
                     dashes[index].innerText = char;
 
                     // check wether the player has won
-                    winsCount++;
-                    if(winsCount==secretWordArray.length) {
+                    correctGuesses++;
+                    if(correctGuesses==secretWordArray.length) {
+                        doorLeft.style.transform = 'rotateY(-140deg)';
+                        doorRight.style.transform = 'rotateY(140deg)';
+
                         endGameText.innerHTML = `<h2 class="won-message">YOU'VE WON!!!</h2>
                                                 <p>The word was <span>${secretWord}</span></p>`;
-                                            //block all buttons
+                       
                         disableButtons();
                     }
-
                 }
-
             });
+
+        } else {
+            //wrongGuesses used to diintegrate the bootcamp school
+            wrongGuesses++;
+            console.log(`WRONG GUESSES: ${wrongGuesses}`)
+
+            removeHouseElements(wrongGuesses);
+
+            if(wrongGuesses == maxWrongGuesses) {
+                endGameText.innerHTML = `<h2 class='lost-message'>YOU LOST !!</h2>
+                                        <p>The word was <span>${secretWord}</span></p>`
+                disableButtons();
             }
-            else {
-                //lossesCount the losses (to draw the stick figure)
-                lossesCount++;
-                console.log(`WRONG GUESSES: ${lossesCount}`)
-                //TODO DRAW STICK FIGURE
-                drawStickfigure(lossesCount);
-                if(lossesCount == max_guesses) {
-                    endGameText.innerHTML = `<h2 class='lost-message'>YOU LOST !!</h2>
-                                            <p>The word was <span>${secretWord}</span></p>`
-                    disableButtons();
-                }
-            }
-            button.disabled = true;
+        }
+       
+        button.disabled = true;
+
         });
+
         letterContainer.append(button);
     }
     displayCategories();
-    let {initialDrawing} = CanvasCreator();
-//FRAME
-    initialDrawing();
+
+    // RESET
+    windowRight.style.visibility = 'visible';
+    windowLeft.style.visibility = 'visible';
+    doorRight.style.visibility = 'visible';
+    doorLeft.style.visibility = 'visible';
+    roof.style.visibility = 'visible';
+    banner.style.visibility = 'visible';
+    doorLeft.style.transform = 'rotateY(0)';
+    doorRight.style.transform = 'rotateY(0)';
 }  
 
-//CANVAS
-const CanvasCreator = () => {
-    let context = canvas.getContext('2d');
-    context.beginPath();
-    context.strokeStyle = "#000";
-    context.lineWidth = 2;
-    //LINES for the stickfigure
-    const drawLine = (fromX, fromY, toX,toY) => {
-        context.moveTo(fromX, fromY);
-        context.lineTo(toX, toY);
-        context.stroke();
-    };
-
-    const head = () => {
-        context.beginPath();
-        context.arc(70, 30, 10, 0, Math.PI * 2, true);
-        context.stroke();
-    };
-
-    const body = () => {
-        drawLine(70, 40, 70, 80);
-    };
-
-    const leftArm = () => {
-        drawLine(70, 50, 50, 70);
-    };
-
-    const rightArm = () => {
-        drawLine(70, 50, 90, 70);
-    };
-
-
-    const leftLeg = () => {
-        drawLine(70, 80, 50, 110);
-    };
-
-    const rightLeg = () => {
-        drawLine(70, 80, 90, 110);
-    };
-   
-    //INITIAL FRAME
-    const initialDrawing = () => {
-        //clear old drawing on canvas
-        context.clearRect(0, 0, canvas.width, context.canvas.height);
-        
-        //line at the bottom
-        drawLine(10, 130, 130, 130);
-
-        //left line
-        drawLine(10, 10, 10, 131);
-
-        //top line
-        drawLine(10, 10, 70, 10);
-
-        // small line on the top (nuse)
-        drawLine(70, 10, 70, 20);
-    }; 
-    return {initialDrawing, head, body, leftArm, rightArm, leftLeg, rightLeg};
-};
-
-// DRAW THE STICKMAN
-const drawStickfigure = (lossesCount) => {
-    let {head, body, leftArm, rightArm, leftLeg, rightLeg} = CanvasCreator();
+// REMOVE AN ELEMENT FROM THE SCOOL FOR EACH WRONG GUESS
+const removeHouseElements = (lossesCount) => {
 
     switch(lossesCount) {
-        case 1:
-            head();
+        case 1:  
+            windowRight.style.visibility = 'hidden';
             break;
         case 2:
-            body();
+            windowLeft.style.visibility = 'hidden';
             break;
         case 3:
-            leftArm();
+            roof.style.visibility = 'hidden';
             break;
         case 4:
-            rightArm();
+            banner.style.visibility = 'hidden';
             break;
         case 5:
-            leftLeg();
+            doorRight.style.visibility = 'hidden';
             break;
         case 6:
-            rightLeg();
+            doorLeft.style.visibility = 'hidden';
             break;
         default:
             break;
     }
 };
+
 
 //NEW GAME
 newGameButton.addEventListener("click", startGame)

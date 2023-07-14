@@ -13,7 +13,7 @@ body {
     overflow:hidden;
 }
 /* BACKGROUND */
-.house {
+.background {
     position:relative;
     width:700px;
     height:550px;
@@ -24,7 +24,7 @@ body {
 }
 
 /* set the main (base) part the house */
-.main {
+.house {
     position:absolute;
     bottom:0;
     left:50%;
@@ -32,6 +32,7 @@ body {
     width: 450px;
     height: 400px;
     background: beige;
+    box-shadow: 5px 5px 5px rgba(117, 117, 96, 0.5);
 }
 
 /* create a borderline on top */
@@ -78,6 +79,7 @@ body {
     right: 0;
 /* create the roof shape */
     transform: skew(30deg);
+    box-shadow: 5px 5px 5px rgba(103, 112, 112, 0.5);
 }
 
 .front {
@@ -252,21 +254,7 @@ body {
     border-top: 5px solid rgb(72, 71, 71);
     border-bottom: 5px solid rgb(72, 71, 71) ;
 }
-/* .ornamental-line { */
-    /* background-color: red; */
-    /* width:100%;
-    height:12px;
 
-    position:absolute;
-    top:38%;
-    border-top: 4px solid rgb(24, 123, 123);
-    border-bottom: 4px solid rgb(24, 123, 123);
-} */
-
-/* .lines-sides {
-    top:45%;
-} */
-/* window top right corner */
 .window-right {
     position:absolute;
     top:20px;
@@ -354,16 +342,15 @@ body {
     border-top-left-radius: 60px;
     border-top-right-radius: 60px;
 }
-
+/* RIBBON */
 h1 {
     position: relative;
     /* transform:translate(20%); */
-    top: 50px;
-    margin: 0 auto 20px;
+    top: 45px;
     padding: 10px 40px;
     text-align: center;
     background-color: #f25f0a;
-    color: white;
+    color: rgb(232, 214, 214);
     font-weight: bold;
     font-family:Georgia, 'Times New Roman', Times, serif;
     letter-spacing: 3px;
