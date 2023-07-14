@@ -19,15 +19,15 @@ let doorLeft = document.querySelector('#left-door');
 let doorRight = document.querySelector('#right-door');
 
 const categories = {
-    cssSensei : ["SELECTOR", "BOX MODEL", "FLEXBOX", "GRID", "RESPONSIVE", 
+    css: ["SELECTOR", "BOX MODEL", "FLEXBOX", "GRID", "RESPONSIVE", 
     "ANIMATION", "TYPOGRAPHY", "GRADIENT", "TRANSITION", "PSEUDO-CLASS"],
 
 
-javaScriptJedi : ["VARIABLE", "FUNCTION", "ARRAY", "OBJECT", "DOM MANIPULATION",
+javascript : ["VARIABLE", "FUNCTION", "ARRAY", "OBJECT", "DOM MANIPULATION",
  "EVENT LISTENER", "CONDITIONAL", "LOOP", "SCOPE", "CALLBACK"],
 
 
- htmlHeros : ["MARKUP", "ELEMENT", "ATTRIBUTE", "BROWSER", "HEADINGS",
+ html : ["MARKUP", "ELEMENT", "ATTRIBUTE", "BROWSER", "HEADINGS",
                 "LISTS", "HYPERLINK", "IMAGE", "FORM", "TABLE"]
 };
 
@@ -40,11 +40,12 @@ let secretWord = "";
 
 const displayCategories = () => {
     categoriesContainer.innerHTML += `<h3>What's your expertise?</h3>`;
-    
     let buttonContainer = document.createElement("div");
     //generate a button for each category
+    
     for(let category in categories) {
-        buttonContainer.innerHTML += `<button class="categories" onclick="displayWord('${category}')" >${category}</button>`
+            buttonContainer.innerHTML += `<button class="categories" onclick="displayWord('${category}')" >${category}</button>`
+
     }
 
     categoriesContainer.appendChild(buttonContainer);
@@ -82,7 +83,7 @@ let displayWord = (categoryName) => {
         }
         // disable all non-active buttons
         else {
-            button.disables = true;
+            button.disabled = true;
         }        
     });
 

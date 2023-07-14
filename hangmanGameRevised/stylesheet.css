@@ -18,7 +18,7 @@ body {
     max-width:34em;
     position:absolute;
     transform: translate(-50%, -50%);
-    top:50%;
+    top:25%;
     left:50%;
     padding: 3em;
     border-radius: 5em;
@@ -48,22 +48,23 @@ h3 {
     border:3px solid rgb(95, 209, 89);
     border-radius: 3em;
     background-color: green;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-weight: bolder;
     color: white;
     letter-spacing: 2px;
+
 }
 
 #categories-container button:disabled {
     border: 3px solid rgb(63, 79, 59);
     background-color: rgb(114, 149, 109);
-    background-color: rgb(44, 42, 165);
+    background-color: rgb(139, 139, 143);
 }
 
 #categories-container button.active {
-    background-color: yellow;
+    background-color: rgb(98, 189, 24);
     border: 3px solid black;
-    color:blue;
+    color:rgb(4, 26, 8);
 }
 
 /*LETTERS*/
@@ -80,6 +81,7 @@ h3 {
     width:2.4em;
     border-radius:5px;
     background-color: greenyellow;
+    font-weight: bold;
 }
 /* modal */
 .new-game-popup {
