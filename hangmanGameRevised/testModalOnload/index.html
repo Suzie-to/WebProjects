@@ -16,21 +16,40 @@
 
 <body>
 
-    <!--Open button-->
-    <!--Modal Component and Modal Background-->
+    <!-- Review Instructions Button -->
+    <button id="review-instructions-button">Review Instructions</button>
 
     <div id="manual-container">
         <div id="game-instructions">
-            <p>
-                A modal is a UI (User Interface) component that is typically used to 
-                display additional content or interactions on top of the main content 
-                of a webpage or application. It is often used to capture user input, 
-                display alerts or notifications, or present dialog boxes.
-            </p>
-            <div id="close-button">&times;</div>
+            <div class="slideshow-container">
+                <div class="slide">
+                  <p>Test your front-end programming knowledge and determine if you have what 
+                    it takes to join the prestigious bootcamp. Get ready to showcase your 
+                    skills and save the bootcamp from disintegration!</p>
+                </div>
+
+                <div class="slide">
+                    <p>Your mission, should you choose to accept it, is to guess the secret 
+                        word within the chosen category by guessing one letter at a time. You 
+                        have to unveil the entire word before the bootcamp disintegrates due 
+                        to your wrong guesses. You only have six chances, so use them 
+                        wisely!</p>
+                </div>
+
+                <div class="slide">
+                    <p>Are you an HTML Hero, a Javascript Jedi or a CSS Sensei, 
+                        pick your category and showcase your knowledge!</p>
+                </div>
+                <!-- BUTTONS -->
+                <div id="close-button">&times;</div>
+
+                
+                <button class="prev-button">Previous</button>
+
+                <button class="next-button">Next</button>
+            </div>
         </div>
     </div>
-
 
     <script src="./script.js"></script>
 </body>

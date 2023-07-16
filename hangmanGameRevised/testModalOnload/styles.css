@@ -1,4 +1,4 @@
-/*****************************MODAL COMPONENT STYLING***************************/
+/* ****************************MODAL COMPONENT STYLING************************** */
 * {
     margin:0;
     padding:0;
@@ -25,17 +25,17 @@ background-color: bisque;
     border-radius: 5px;
     font-size: 1.5rem;
     /* nested flexbox to move the 'X' to the right */
-    display: flex;
+   display: flex;
     justify-content: space-between;
-    align-items: center;
-    /* flex-direction: column;
-    text-align: center; */
+    align-items: center; 
+    flex-direction: column;
+    text-align: center;
 
 /* animation */
     animation-name:animatemodal;
     animation-duration: .4s;
-}
-
+} 
+ 
 #close-button {
     font-size: 3rem;
 }
@@ -46,7 +46,7 @@ background-color: bisque;
     color: red;
 }
 
-#manual-container {
+ #manual-container { 
     /* display:none;  */
     position:fixed;
     top:0;
@@ -55,7 +55,7 @@ background-color: bisque;
     height:100%;
     z-index:1;
     background-color: rgba(45, 4, 4, 0.4);
-}
+} 
 
 /* Modal Animation Section */
 
@@ -69,4 +69,9 @@ background-color: bisque;
         opacity:1;
     }
     
-}
+} 
+
+.slide {
+    display: none;
+  }
+  
