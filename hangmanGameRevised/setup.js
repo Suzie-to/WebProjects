@@ -31,8 +31,8 @@ let secretWord = "";
 
 // INSTRUCTIONS
 const slides = Array.from(document.querySelectorAll('.slide'));
-const prevButton = document.querySelector('.prev-button');
-const nextButton = document.querySelector('.next-button');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
 let closeButton= document.getElementById('close-button');
 const reviewInstructionsButton = document.getElementById('review-instructions-button');
 let manualContainer = document.getElementById('manual-container');
@@ -67,7 +67,7 @@ const displayCategories = () => {
 const disableButtons = () => {
     let categoryButtons = document.querySelectorAll(".categories");
     let letterButtons = document.querySelectorAll(".letters");
-//TODO disable the other two buttons when a category is chosen
+
     //disable all categories
     categoryButtons.forEach((button) => {
         button.disabled = true;
@@ -262,7 +262,7 @@ function showSlide(index) {
     showSlide(currentSlideIndex);
   }
   reviewInstructionsButton.addEventListener('click', function() {
-      manualContainerContainer.style.display = 'block';
+      manualContainer.style.display = 'block';
   } );
   
   // Function to review the instructions
@@ -290,7 +290,9 @@ function showSlide(index) {
           manualContainer.style.display = 'none';
       }
   });
-
+  reviewInstructionsButton.addEventListener('click', function() {
+    manualContainer.style.display = 'block';
+} );
 
 //NEW GAME
 newGameButton.addEventListener("click", startGame)
