@@ -1,0 +1,399 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    min-height: 100vh;
+    overflow:hidden;
+}
+
+.house {
+    position:relative;
+    width:700px;
+    height:350px;
+    /* house base */
+    background:lightblue;
+    /* Grass */
+    border-bottom:8px solid green;
+}
+
+/* set the main (base) part the house */
+.main {
+    position:absolute;
+    bottom:0;
+    left:50%;
+    transform:translate(-50%);
+    width: 400px;
+    height: 200px;
+    background: beige;
+}
+/* create a borderline on top */
+.main::before {
+    background: rgba(0,0,0,0.3);
+    position:absolute;
+    width: 100%;
+    height:10px;
+    left:0;
+    top:0;
+    content:'';
+}
+.roof {
+    /* background-color: yellow; */
+    position:absolute;
+    height: 100px;
+    width: 100%;
+
+    /* move the top above the main */
+    top: -100px;
+    
+}
+/* left part of the roof */
+.roof::before {
+    content:'';
+    background: rgb(24, 123, 123);
+    position: absolute;
+    width:60%;
+    height:100%;
+    top: 0;
+    left: 0;
+/* create the roof shape */
+    transform: skew(330deg);
+}
+/* right part of the roof */
+.roof::after {
+    content:'';
+    background: rgb(24, 123, 123);
+    position: absolute;
+    width:60%;
+    height:100%;
+    top: 0;
+    right: 0;
+/* create the roof shape */
+    transform: skew(30deg);
+}
+
+.front {
+    background:lightgray;
+    position:absolute;
+    width:180px;
+    height:180px;
+    bottom:0;
+    left:50%;
+    /* center the fron porch */
+    transform: translateX(-50%);
+}
+/* creating the triangular shape in the roof */
+.front::before {
+    content: '';
+    /* background: rgb(194, 23, 23); */
+    background-color: lightgray;
+    position: absolute;
+    width: 126px;
+    height:126px;
+    left: 50%; /*move to the left, thus centering it */
+    top:-64px;
+    /* create the chape of a diamond */
+    transform: translateX(-50%) rotate(45deg);
+    border-top: 4px solid rgb(72, 71, 71);
+    border-left: 4px solid rgb(72, 71, 71);;
+}
+/* the window */
+.front::after {
+    content:'';
+    background-color:rgb(72, 71, 71);
+    position:absolute;
+    width:120px;
+    height:60px;
+    top:-20px;
+    /* center it */
+    left:50%;
+    transform: translateX(-50%);
+    /* round off the edges of the window */
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    /* extend the shape further down */
+    border: 4px solid rgb(72, 71, 71);
+    /* create a window with a color that fades in a linear manner */
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* greate vertical and horizontal lines */
+    background-size: 10px 15px;
+}
+/* the door */
+.door {
+    background-color: brown;
+    width:60px;
+    height: 80px;
+    position:absolute;
+    bottom:0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* round off the top edges of the door (radius=width)*/
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+
+}
+/* small window besides the door, left*/
+.door::before {
+    content:'';
+    position:absolute;
+    width:30px;
+    height:30px;
+
+    /* position to the left */
+    left: -45px;
+    top:30px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+
+/* small window besides the door, left*/
+.door::after {
+    content:'';
+    position:absolute;
+    width:30px;
+    height:30px;
+
+    /* position to the left */
+    right: -45px;
+    top:30px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+.ornamental-line {
+    /* background-color: red; */
+    width:100%;
+    height:12px;
+
+    position:absolute;
+    top:38%;
+    border-top: 4px solid rgb(24, 123, 123);
+    border-bottom: 4px solid rgb(24, 123, 123);
+}
+
+.lines-sides {
+    top:45%;
+}
+/* window top right corner */
+.window-right {
+    position:absolute;
+    top:20px;
+    right:30px;
+
+    width: 60px;
+    height: 50px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+/* window bottom right corner */
+.window-right::before {
+    content:'';
+    position:absolute;
+    top:90px;
+
+    width: 60px;
+    height: 65px;
+
+
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+
+    background-size: 10px 10px;
+
+    border:5px solid rgb(72, 71, 71) ;
+    /* border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ; */
+
+    /* round off the top edges of the door*/
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
+
+/* window top right corner */
+.window-left {
+    content:'';
+    position:absolute;
+    top:20px;
+    left:30px;
+
+    width: 60px;
+    height: 50px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+/* window bottom right corner */
+.window-left::before {
+    content:'';
+    position:absolute;
+    top:90px;
+
+    width: 60px;
+    height: 65px;
+
+
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+
+    background-size: 10px 10px;
+
+    border:5px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+
+    /* round off the top edges of the door*/
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
+/* right wing */
+.house-wings {
+    position:absolute;
+    bottom:0;
+    left:-120px;
+    width: 140px;
+    height: 140px;
+
+    background-color:lightgray;
+}
+
+/* roof in triangular shape by using a pound form */
+.house-wings::before {
+    content:'';
+    position:absolute;
+    top: -52px;
+    left:50%;
+
+    width:100px;
+    height:100px;
+
+    background-color: lightgray;
+    transform:translateX(-50%) rotate(45deg);
+    border-top: 4px solid rgb(72, 71, 71);
+    border-left: 4px solid rgb(72, 71, 71);
+}
+
+.house-wings::after {
+    content:'';
+    position: absolute;
+    top:-20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height:40px;
+
+    background: rgb(72, 71, 71);
+
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+
+    background-size: 10px 10px;
+
+    border:5px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    /* border-bottom: 5px solid rgb(72, 71, 71) ; */
+
+    /* round off the top edges of the door*/
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+}
+.line .lines-sides {
+    transform: translateY(-16px);
+}
+
+.windows {
+    position:absolute;
+    left:30px;
+    top: 65px;
+
+    width:80px;
+    height: 70px;
+
+    background-color:rgb(72, 71, 71);
+    background-image: linear-gradient(to right, transparent 10%, transparent 90%, rgb(72, 71, 71) 90%),
+                    linear-gradient(to bottom, transparent 10%, rgb(112, 112, 112) 10%, rgb(147, 146, 146) 90%);
+    /* window grid size*/
+    background-size: 10px 10px;
+    /* window frame */
+    border:2px solid rgb(72, 71, 71) ;
+    border-top: 5px solid rgb(72, 71, 71);
+    border-bottom: 5px solid rgb(72, 71, 71) ;
+}
+
+/* tree crown */
+.tree {
+    position:absolute;
+    right: -120px;
+    top:-10px;
+
+    width:120px;
+    height:120px;
+    background: greenyellow;
+    
+    /* leaf shape */
+    border-top-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+
+    transform: rotate(315deg);
+}
+
+/* tree trunc */
+.tree::before {
+    content:'';
+    position:absolute;
+    top:85px;
+    left:-20px;
+
+    width:10px;
+    height:100px;
+
+    background-color: rgb(79, 15, 15);
+
+    transform: rotate(45deg);
+}
+.small-tree {
+    top:-15px;
+    right: -80px;
+    background-color: green;
+    transform: rotate(315) scale(1.25);
+}
